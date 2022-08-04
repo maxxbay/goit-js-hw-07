@@ -17,7 +17,6 @@ const imgMarkup = galleryItems
 
 imgCollection.insertAdjacentHTML("afterbegin", imgMarkup);
 
-
 imgCollection.addEventListener("click", clickedImg);
 
 function clickedImg(event) {
@@ -27,11 +26,20 @@ function clickedImg(event) {
   }
 
   const selectedImg = event.target.dataset.source;
-  const modalBox = basicLightbox.create(`
-    <img src="${selectedImg}" width="800" height="600">`);
-  modalBox.show();
+  const modalBox = basicLightbox.create(
+    `
+    <img src="${selectedImg}" width="800" height="600">`,
+    {
+      onShow: () => {
+        window.addEventListener("keydown", keyboardEsc);
+      },
+      onClose: () => {
+        window.removeEventListener("keydown", keyboardEsc);
+      },
+    }
+  );
 
-  window.addEventListener("keydown", keyboardEsc);
+  modalBox.show();
 
   function keyboardEsc(event) {
     if (event.code === "Escape") {
