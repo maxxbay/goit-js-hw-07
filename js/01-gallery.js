@@ -16,6 +16,8 @@ const imgMarkup = galleryItems
   .join("");
 
 imgCollection.insertAdjacentHTML("afterbegin", imgMarkup);
+
+
 imgCollection.addEventListener("click", clickedImg);
 
 function clickedImg(event) {
