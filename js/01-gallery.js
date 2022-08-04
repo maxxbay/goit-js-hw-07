@@ -43,9 +43,7 @@ function clickedImg(event) {
 
   function keyboardEsc(event) {
     if (event.code === "Escape") {
-      modalBox.close(() => {
-        window.removeEventListener("keydown", keyboardEsc);
-      });
+      modalBox.close();
     }
   }
 }
